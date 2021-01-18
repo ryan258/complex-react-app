@@ -9,7 +9,7 @@ function HeaderLoggedOut(props) {
     e.preventDefault()
     // alert("a winner has entered the building!")
     try {
-      const response = await Axios.post("http://localhost:8080/login", { username, password })
+      const response = await Axios.post("/login", { username, password })
       if (response.data) {
         // console.log(response.data)
         localStorage.setItem("complexappToken", response.data.token)
