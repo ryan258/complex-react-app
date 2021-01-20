@@ -1,18 +1,21 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useContext } from "react"
 import Page from "./Page"
 import Axios from "axios"
 import { withRouter } from "react-router-dom"
+import ExampleContext from "../ExampleContext"
 
 function CreatePost(props) {
   const [title, setTitle] = useState()
   const [body, setBody] = useState()
+  // const addFlashMessage = useContext(ExampleContext)
+  const { addFlashMessage } = useContext(ExampleContext)
 
   async function handleSubmit(e) {
     e.preventDefault()
     try {
       const response = await Axios.post("/create-post", { title, body, token: localStorage.getItem("complexappToken") })
       // redirect to new post url
-      props.addFlashMessage("A retarded bear has taken over your computer, and success on that post!")
+      addFlashMessage("A retarded bear has taken over your computer, and success on that post!!!")
       props.history.push(`/post/${response.data}`)
       console.log("Orson's on fire!")
     } catch (e) {
