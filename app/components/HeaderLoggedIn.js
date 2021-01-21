@@ -1,12 +1,15 @@
 import React, { useEffect, useContext } from "react"
 import { Link } from "react-router-dom"
-import ExampleContext from "../ExampleContext"
+// Dispatches
+import DispatchContext from "../DispatchContext"
 
 function HeaderLoggedIn(props) {
-  const { setLoggedIn } = useContext(ExampleContext)
+  // app* name to mean global, app-wide
+  const appDispatch = useContext(DispatchContext)
 
   function handleLogout() {
-    setLoggedIn(false)
+    // what type of action are you dispatching? "logout"
+    appDispatch({ type: "logout" })
     localStorage.removeItem("complexappToken")
     localStorage.removeItem("complexappUsername")
     localStorage.removeItem("complexappAvatar")

@@ -13,7 +13,9 @@ import HomeGuest from "./components/HomeGuest"
 import Terms from "./components/Terms"
 import ViewSinglePost from "./components/ViewSinglePost"
 import FlashMessages from "./components/FlashMessages"
-import ExampleContext from "./ExampleContext"
+// Import Contexts
+import DispatchContext from "./DispatchContext"
+import StateContext from "./StateContext"
 
 function Main() {
   const initialState = {
@@ -34,44 +36,38 @@ function Main() {
 
   const [state, dispatch] = useReducer(ourReducer, initialState)
 
-  // dispatch({type: "login"})
-  // dispatch({type: "logout"})
-  // dispatch({type: "flashMessage", value: ...})
-
-  const [loggedIn, setLoggedIn] = useState(Boolean(localStorage.getItem("complexappToken")))
-  const [flashMessages, setFlashMessages] = useState([])
-
-  function addFlashMessage(msg) {
-    setFlashMessages((prev) => prev.concat(msg))
-  }
-
   return (
-    <ExampleContext.Provider value={{ addFlashMessage, setLoggedIn }}>
-      <BrowserRouter>
-        <FlashMessages messages={flashMessages} />
-        <Header loggedIn={loggedIn} />
+    // React team recommends 1 provider for state and the other for the dispatch
+    // <ExampleContext.Provider value={{ state, dispatch }}>
+    <StateContext.Provider value={state}>
+      <DispatchContext.Provider value={dispatch}>
+        <BrowserRouter>
+          <FlashMessages messages={state.flashMessages} />
+          <Header />
 
-        <Switch>
-          <Route path="/" exact>
-            {loggedIn ? <Home /> : <HomeGuest />}
-          </Route>
-          <Route path="/post/:id">
-            <ViewSinglePost />
-          </Route>
-          <Route path="/create-post">
-            <CreatePost />
-          </Route>
-          <Route path="/about-us">
-            <About />
-          </Route>
-          <Route path="/terms">
-            <Terms />
-          </Route>
-        </Switch>
+          <Switch>
+            <Route path="/" exact>
+              {state.loggedIn ? <Home /> : <HomeGuest />}
+            </Route>
+            <Route path="/post/:id">
+              <ViewSinglePost />
+            </Route>
+            <Route path="/create-post">
+              <CreatePost />
+            </Route>
+            <Route path="/about-us">
+              <About />
+            </Route>
+            <Route path="/terms">
+              <Terms />
+            </Route>
+          </Switch>
 
-        <Footer />
-      </BrowserRouter>
-    </ExampleContext.Provider>
+          <Footer />
+        </BrowserRouter>
+        {/* </ExampleContext.Provider> */}
+      </DispatchContext.Provider>
+    </StateContext.Provider>
   )
 }
 

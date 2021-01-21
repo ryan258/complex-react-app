@@ -71,3 +71,12 @@ so we have just 2 things that can power our whole application
 
 - with context we would have to pass in a ton of different values and our application would only grow in complexity
 - but with use reducer, all we'd ever have to pass into the Context.Provider is our overall state object and our dispatch. Just 2 things can allow for infinite actions and changes to state
+
+## useReducer() + Context = Power
+
+As complexity grows, being able to define all complex logic in one place and not having to cater to state elsewhere, just dispatching actions care free is awesome.
+
+- Anytime a context value updates children components consuming the context will rerender to make sure they have the updated info
+- not all components are going to need access to a global state, some may just need access to the global dispatch
+- the way around it is to have 2 context providers in the JSX
+- that way components can choose what contexts they consume and watch for changes
