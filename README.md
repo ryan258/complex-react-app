@@ -95,3 +95,5 @@ Install Immer package
 `$ npm install immer use-immer`
 
 Then instead of React's `useReducer()` we use `useImmerReducer()`
+
+Then in ourReducer() we can change each case to directly modify the single piece of state
