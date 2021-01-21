@@ -80,3 +80,18 @@ As complexity grows, being able to define all complex logic in one place and not
 - not all components are going to need access to a global state, some may just need access to the global dispatch
 - the way around it is to have 2 context providers in the JSX
 - that way components can choose what contexts they consume and watch for changes
+
+## What is Immer?
+
+We never want to directly mutate or change our state, give it a new value, object and it will update updating the app's state for you. Useful with complexity because things will get more complicated and that's where Immer comes into play.
+
+Immer make it incredibly easy to play with objects in an immutable fashion.
+
+We want to update the state of our app in a different way with ourReducer...
+
+Immer will give us a draft of state, then we can modify and mutate that draft
+
+Install Immer package
+`$ npm install immer use-immer`
+
+Then instead of React's `useReducer()` we use `useImmerReducer()`
