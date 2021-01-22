@@ -97,3 +97,21 @@ Install Immer package
 Then instead of React's `useReducer()` we use `useImmerReducer()`
 
 Then in ourReducer() we can change each case to directly modify the single piece of state
+
+## Moving Side Effects into useEffect: Using & Storing Data
+
+When you log in, the server sends back 3 piece of information:
+
+- xxxToken
+- xxxUsername
+- xxxAvatar
+
+Then we're storing these in the local storage.
+Problem is that we're saving all this from too many different files.
+This can lead to bugs, etc as complexity grows.
+
+So we'll do all our loading and saving to local storage takes place from only our Main.js file.
+
+We want to also keep our reducer pure a free of side effects and only working with reactish things/state.
+
+So we do this side effect things in a useEffect
