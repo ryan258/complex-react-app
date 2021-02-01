@@ -115,3 +115,19 @@ So we'll do all our loading and saving to local storage takes place from only ou
 We want to also keep our reducer pure a free of side effects and only working with reactish things/state.
 
 So we do this side effect things in a useEffect
+
+# Actually Building the App
+
+## Profile Screen
+
+### useParams()
+
+We get this from react-route-dom module
+
+`import {useParams} from 'react-router-dom'`
+
+Use params returns an object that could have many different properties, so we destructure the ones we want.
+
+`const {userName} = useParams()`
+
+It's good to use with useEffect() so it only runs one, but if you're making something like an Axios call you can't do an async/await on it. You have to create one inside it.

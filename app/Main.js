@@ -7,13 +7,14 @@ Axios.defaults.baseURL = "http://localhost:8080"
 // My Components
 import About from "./components/About"
 import CreatePost from "./components/CreatePost"
+import FlashMessages from "./components/FlashMessages"
 import Footer from "./components/Footer"
 import Header from "./components/Header"
 import Home from "./components/Home"
 import HomeGuest from "./components/HomeGuest"
+import Profile from "./components/Profile"
 import Terms from "./components/Terms"
 import ViewSinglePost from "./components/ViewSinglePost"
-import FlashMessages from "./components/FlashMessages"
 // Import Contexts
 import DispatchContext from "./DispatchContext"
 import StateContext from "./StateContext"
@@ -85,6 +86,9 @@ function Main() {
             </Route>
             <Route path="/about-us">
               <About />
+            </Route>
+            <Route path="/profile/:username">
+              <Profile />
             </Route>
             <Route path="/terms">
               <Terms />
