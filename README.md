@@ -131,3 +131,7 @@ Use params returns an object that could have many different properties, so we de
 `const {userName} = useParams()`
 
 It's good to use with useEffect() so it only runs one, but if you're making something like an Axios call you can't do an async/await on it. You have to create one inside it.
+
+## Pull in the User's Post Data
+
+## Load Posts by Author
